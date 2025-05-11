@@ -3,8 +3,8 @@ import os
 import numpy as np
 import random
 
-dataset_root = '/home/gaojw/AI/ECG-MIT-BIH-Arrythmia/mit-bih-2D_personal_program/MIT-BIH_AD/'
-output_dirs = ['NOR/', 'LBBB/', 'RBBB/', 'APC/', 'PVC/', 'PAB/', 'VEB/', 'VFE/']
+dataset_root = '/ECG_MIT_BIH_Arryhthmia_2D_CNN/MIT-BIH_AD' # 改为自己的路径
+output_dirs = ['NOR/', 'LBBB/', 'RBBB/', 'APC/', 'VFE/']
 
 count = 0
 pathes_by_type = {}
@@ -20,7 +20,7 @@ test_list = []
 
 for type in output_dirs:
 	cur = pathes_by_type[type]
-	if len(cur) is 0:
+	if len(cur) == 0:
 		continue		#跳过类别数量为0的分类
 	random.shuffle(cur)		#随机打乱各类别中的样本顺序
 	#抽调60%的数据作为train set
@@ -30,7 +30,7 @@ for type in output_dirs:
 		#建立一种格式  file_name label   eg. Normal/fig_21471.png 0
 		cur[i]=None
 
-	#抽调200%的数据作为val set
+	#抽调20%的数据作为val set
 	for i in range(int(len(cur)*0.6), int(len(cur)*0.8)):
 		if cur[i] is None:
 			continue
